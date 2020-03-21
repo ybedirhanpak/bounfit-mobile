@@ -1,12 +1,10 @@
 const DENEME = 'DENEME';
 
 export const actionTypes = {
-    DENEME,
-}
+  DENEME,
+};
 
-export const denemeAction = (text) => {
-    return {
-        type: DENEME,
-        payload: text
-    }
-}
+export const denemeAction = (text) => ({
+  type: DENEME,
+  payload: text,
+});

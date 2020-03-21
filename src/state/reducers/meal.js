@@ -1,20 +1,20 @@
 import { actionTypes } from '../actions/meal';
 
 const defaultState = {
-    mealList: [],
-    deneme: ""
+  mealList: [],
+  deneme: '',
 };
 
 const mealReducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case actionTypes.DENEME:
-            return {
-                ...state,
-                deneme: action.payload,
-            }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case actionTypes.DENEME:
+      return {
+        ...state,
+        deneme: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export default mealReducer;
