@@ -6,7 +6,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import configureStore from './src/state/configureStore';
 import appTheme from './src/theme/custom-theme.json';
-
+import StatusBar from './src/components/statusBar';
 import AppNavigator from './src/navigator/navigation';
 
 const { store, persistor } = configureStore();
@@ -18,6 +18,7 @@ const App = () => (
     <PersistGate loading={null} persistor={persistor}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider mapping={mapping} theme={theme}>
+        <StatusBar />
         <AppNavigator />
       </ApplicationProvider>
     </PersistGate>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomNavigation, BottomNavigationTab, Icon } from '@ui-kitten/components';
+import { BottomNavigation, BottomNavigationTab, Icon, StyleService, useStyleSheet } from '@ui-kitten/components';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -25,10 +25,11 @@ const BottomTabBar = ({ navigation, state }) => {
   const onSelect = (index) => {
     navigation.navigate(state.routeNames[index]);
   };
-
+  const style = useStyleSheet(themedStyle);
   return (
     <SafeAreaView style={style.bottomNavigation}>
       <BottomNavigation
+        style={{ backgroundColor: 'white' }}
         selectedIndex={state.index}
         onSelect={onSelect}
         appearance="noIndicator"
@@ -57,17 +58,9 @@ const AppNavigator = () => (
   </NavigationContainer>
 );
 
-const style = StyleSheet.create({
+const themedStyle = StyleService.create({
   bottomNavigation: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 10,
-
-    elevation: 24,
+    elevation: 15,
   },
 });
 

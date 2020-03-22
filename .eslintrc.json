@@ -30,6 +30,7 @@
         "object-curly-newline": "off",
         "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
         "no-debugger": "warn",
-        "react/no-array-index-key": "warn"
+        "react/no-array-index-key": "warn",
+        "react/no-unused-prop-types": "warn"
     }
 }

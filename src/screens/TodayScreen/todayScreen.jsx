@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Layout, Icon } from '@ui-kitten/components';
 import Screen from '../Screen';
-import MealCardSmall from '../../components/mealCardSmall';
-import MealTotalInfo from '../../components/mealTotalInfo';
-
+import MealCard from '../../components/mealCard';
+import ValuesInfo from '../../components/valuesInfo';
+import AddMeal from '../../components/addMeal';
 import dailyPlan from '../../defaults/dailyPlan';
 
 const renderFabIcon = (style) => <Icon {...style} name="plus-outline" />;
@@ -19,17 +19,11 @@ const TodayScreen = (props) => {
     navigation.navigate(screen);
   };
 
-  const onFabPress = () => {
-    console.log('Go to AddMealScreen');
-  };
-
-  const renderTopNavigation = () => (
-    <MealTotalInfo values={today.totalValues} />
-  );
+  const renderTopNavigation = () => <ValuesInfo values={today.totalValues} />;
 
   const renderMeals = () => {
     const meals = today.meals.map((meal, index) => (
-      <MealCardSmall
+      <MealCard
         key={`${meal.name}-${index}`}
         containerStyle={styles.meal}
         meal={meal}
@@ -42,12 +36,13 @@ const TodayScreen = (props) => {
     <Screen
       renderNavigation={renderTopNavigation}
       style={styles.screen}
-      fab={{
-        iconRenderer: renderFabIcon,
-        onPress: onFabPress,
-      }}
     >
-      <Layout style={styles.mealGroup}>{renderMeals()}</Layout>
+      <Layout style={styles.mealGroup}>
+        {renderMeals()}
+        <AddMeal
+          onPress={() => navigateTo('AddMeal')}
+        />
+      </Layout>
     </Screen>
   );
 };

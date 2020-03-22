@@ -9,12 +9,14 @@ import {
   StyleService,
   useStyleSheet,
 } from '@ui-kitten/components';
+import Card from '../card';
+
 import Food from './food';
 import Total from './total';
 
 import MEAL from '../../defaults/meal';
 
-const MealCardSmall = (props) => {
+const MealCard = (props) => {
   const { containerStyle, meal } = props;
   const styles = useStyleSheet(themedStyles);
 
@@ -31,7 +33,7 @@ const MealCardSmall = (props) => {
 
   return (
     <Layout style={containerStyle}>
-      <Layout style={styles.card}>
+      <Card topLine>
         <Layout style={styles.header}>
           <Text style={styles.title}>{meal.name}</Text>
         </Layout>
@@ -44,24 +46,16 @@ const MealCardSmall = (props) => {
           <Button appearance="ghost" style={styles.button} icon={EditIcon} />
           <Button appearance="ghost" style={styles.button} icon={DeleteIcon} />
         </Layout>
-      </Layout>
+      </Card>
     </Layout>
   );
 };
 
 const themedStyles = StyleService.create({
-  card: {
-    borderWidth: 1,
-    borderColor: 'color-basic-400',
-    borderTopWidth: 2,
-    borderTopColor: 'color-primary-default',
-    paddingTop: 15,
-    borderRadius: 4,
-  },
   header: {
     flex: 3,
     paddingLeft: 20,
-    marginBottom: 15,
+    marginVertical: 15,
   },
   title: {
     fontSize: 16,
@@ -100,13 +94,13 @@ const themedStyles = StyleService.create({
   },
 });
 
-MealCardSmall.propTypes = {
+MealCard.propTypes = {
   containerStyle: PropTypes.object.isRequired,
   meal: MEAL.propType,
 };
 
-MealCardSmall.defaultProps = {
+MealCard.defaultProps = {
   meal: MEAL.defaultProp,
 };
 
-export default MealCardSmall;
+export default MealCard;
