@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Icon, Layout, Tab, TabView, Text } from '@ui-kitten/components';
+import { Icon, Layout, Tab, TabView } from '@ui-kitten/components';
 import Screen from '../Screen';
-import MealCard from '../../components/mealCard';
+import MealCardSmall from '../../components/mealCardSmall';
 import ValuesInfo from '../../components/valuesInfo';
 import DAILYPLAN from '../../defaults/dailyPlan';
 import MEAL from '../../defaults/meal';
@@ -39,7 +39,7 @@ const AddMealScreen = (props) => {
 
   const renderMyMeals = () => {
     const meals = userMeals.map((meal, index) => (
-      <MealCard
+      <MealCardSmall
         key={`${meal.name}-${index}`}
         containerStyle={styles.meal}
         meal={meal}
@@ -50,7 +50,7 @@ const AddMealScreen = (props) => {
 
   const renderOnlineMeals = () => {
     const meals = today.meals.map((meal, index) => (
-      <MealCard
+      <MealCardSmall
         key={`${meal.name}-${index}`}
         containerStyle={styles.meal}
         meal={meal}

@@ -9,12 +9,12 @@ import {
   StyleService,
   useStyleSheet,
 } from '@ui-kitten/components';
-import Card from '../card';
+import Card from './card';
 
 import Food from './food';
-import Total from './total';
+import Total from './food/total';
 
-import MEAL from '../../defaults/meal';
+import MEAL from '../defaults/meal';
 
 const MealCard = (props) => {
   const { containerStyle, meal } = props;
@@ -74,23 +74,6 @@ const themedStyles = StyleService.create({
   button: {
     flex: 1,
     borderRadius: 0,
-  },
-  course: {
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 5,
-  },
-  courseName: {
-    flex: 2,
-  },
-  infoGroup: {
-    flex: 2,
-    flexDirection: 'row',
-  },
-  info: {
-    flex: 1,
-    textAlign: 'center',
-    fontSize: 12,
   },
 });
 

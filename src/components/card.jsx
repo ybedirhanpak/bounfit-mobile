@@ -8,7 +8,7 @@ import {
 } from '@ui-kitten/components';
 
 const Card = (props) => {
-  const { children, topLine, active, onPress } = props;
+  const { children, containerStyle, topLine, active, onPress } = props;
   const styles = useStyleSheet(themedStyles);
 
   const cardStyle = topLine
@@ -18,7 +18,9 @@ const Card = (props) => {
   if (!active) {
     return (
       <Layout style={cardStyle}>
-        {children}
+        <Layout style={containerStyle}>
+          {children}
+        </Layout>
       </Layout>
     );
   }
@@ -28,7 +30,9 @@ const Card = (props) => {
       activeOpacity={0.5}
       onPress={onPress}
     >
-      {children}
+      <Layout style={containerStyle}>
+        {children}
+      </Layout>
     </TouchableOpacity>
   );
 };
@@ -47,12 +51,16 @@ const themedStyles = StyleService.create({
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,
+  containerStyle: PropTypes.object,
   topLine: PropTypes.bool,
   active: PropTypes.bool,
   onPress: PropTypes.func,
 };
 
 Card.defaultProps = {
+  containerStyle: {
+    flex: 1,
+  },
   topLine: false,
   active: false,
   onPress: undefined,
