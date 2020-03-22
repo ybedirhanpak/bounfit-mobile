@@ -1,10 +1,10 @@
-const DENEME = 'DENEME';
+const CREATE_MEAL = 'CREATE_MEAL';
 
 export const actionTypes = {
-  DENEME,
+  CREATE_MEAL,
 };
 
-export const denemeAction = (text) => ({
-  type: DENEME,
-  payload: text,
+export const createUserMeal = (meal) => ({
+  type: CREATE_MEAL,
+  payload: meal,
 });

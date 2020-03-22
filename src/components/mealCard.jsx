@@ -15,14 +15,14 @@ import Food from './food';
 import Total from './food/total';
 
 import MEAL from '../defaults/meal';
+import FoodHeader from './food/header';
+
+const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
+const DeleteIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 
 const MealCard = (props) => {
   const { containerStyle, meal } = props;
   const styles = useStyleSheet(themedStyles);
-
-  const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
-
-  const DeleteIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 
   const renderFoods = () => {
     const foods = meal.foods.map((food, index) => (
@@ -33,12 +33,13 @@ const MealCard = (props) => {
 
   return (
     <Layout style={containerStyle}>
-      <Card topLine>
+      <Card hasTopLine>
         <Layout style={styles.header}>
           <Text style={styles.title}>{meal.name}</Text>
         </Layout>
         <Divider />
         <Layout style={styles.body}>
+          <FoodHeader />
           {renderFoods()}
           <Total values={meal.totalValues} />
         </Layout>

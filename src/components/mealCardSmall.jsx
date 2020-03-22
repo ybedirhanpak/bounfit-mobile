@@ -25,7 +25,7 @@ const MealCardSmall = (props) => {
     <Layout style={containerStyle}>
       <Card
         containerStyle={styles.card}
-        topLine
+        hasTopLine
       >
         <Layout style={styles.body}>
           {/* <MealHeader /> */}

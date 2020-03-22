@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Layout,
@@ -93,15 +94,18 @@ const themedStyles = StyleService.create({
 });
 
 ValuesInfo.propTypes = {
-  values: VALUES.propType,
+  values: VALUES.propType.isRequired,
   hasBack: PropTypes.bool,
   backPress: PropTypes.func,
 };
 
 ValuesInfo.defaultProps = {
-  values: VALUES.defaultProp,
   hasBack: false,
   backPress: undefined,
 };
 
-export default ValuesInfo;
+const mapStateToProps = (state) => ({
+  values: state.user.today.totalValues,
+});
+
+export default connect(mapStateToProps, null)(ValuesInfo);

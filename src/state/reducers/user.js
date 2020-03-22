@@ -1,3 +1,5 @@
+import { actionTypes } from '../actions/user';
+
 const defaultState = {
   account: {
     isAuth: false,
@@ -211,6 +213,14 @@ const defaultState = {
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case actionTypes.CREATE_MEAL:
+      return {
+        ...state,
+        meals: [
+          ...state.meals,
+          action.payload,
+        ],
+      };
     default:
       return state;
   }

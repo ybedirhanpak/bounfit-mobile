@@ -2,39 +2,37 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Layout, Icon } from '@ui-kitten/components';
+import { Layout } from '@ui-kitten/components';
 import Screen from '../Screen';
 import MealCard from '../../components/mealCard';
 import ValuesInfo from '../../components/valuesInfo';
 import AddMeal from '../../components/addMeal';
-import dailyPlan from '../../defaults/dailyPlan';
-
-const renderFabIcon = (style) => <Icon {...style} name="plus-outline" />;
+import MEAL from '../../defaults/meal';
 
 const TodayScreen = (props) => {
-  const { navigation, today } = props;
+  const { navigation, meals } = props;
 
   // eslint-disable-next-line no-unused-vars
   const navigateTo = (screen) => {
     navigation.navigate(screen);
   };
 
-  const renderTopNavigation = () => <ValuesInfo values={today.totalValues} />;
+  const TopNavigation = () => <ValuesInfo />;
 
   const renderMeals = () => {
-    const meals = today.meals.map((meal, index) => (
+    const mealCards = meals.map((meal, index) => (
       <MealCard
         key={`${meal.name}-${index}`}
         containerStyle={styles.meal}
         meal={meal}
       />
     ));
-    return meals;
+    return mealCards;
   };
 
   return (
     <Screen
-      renderNavigation={renderTopNavigation}
+      renderNavigation={TopNavigation}
       style={styles.screen}
     >
       <Layout style={styles.mealGroup}>
@@ -63,15 +61,11 @@ TodayScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  today: dailyPlan.propType,
-};
-
-TodayScreen.defaultProps = {
-  today: dailyPlan.defaultProp,
+  meals: PropTypes.arrayOf(MEAL.propType).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  today: state.user.today,
+  meals: state.user.today.meals,
 });
 
 export default connect(mapStateToProps, null)(TodayScreen);

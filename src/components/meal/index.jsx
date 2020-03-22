@@ -20,43 +20,27 @@ const Meal = (props) => {
       <Text style={styles.name}>{name}</Text>
       <Layout style={styles.infoGroup}>
         <Layout style={styles.info}>
-          <Text style={styles.infoHeader}>
-            P
-          </Text>
+          <Text style={styles.infoHeader}>P</Text>
           <View style={{ ...styles.textWrapper, backgroundColor: '#eceff1' }}>
-            <Text style={styles.infoText}>
-              {protein}
-            </Text>
+            <Text style={styles.infoText}>{protein}</Text>
           </View>
         </Layout>
         <Layout style={styles.info}>
-          <Text style={styles.infoHeader}>
-            C
-          </Text>
+          <Text style={styles.infoHeader}>C</Text>
           <View style={{ ...styles.textWrapper, backgroundColor: '#cfd8dc' }}>
-            <Text style={styles.infoText}>
-              {carb}
-            </Text>
+            <Text style={styles.infoText}>{carb}</Text>
           </View>
         </Layout>
         <Layout style={styles.info}>
-          <Text style={styles.infoHeader}>
-            F
-          </Text>
+          <Text style={styles.infoHeader}>F</Text>
           <View style={{ ...styles.textWrapper, backgroundColor: '#eceff1' }}>
-            <Text style={styles.infoText}>
-              {fat}
-            </Text>
+            <Text style={styles.infoText}>{fat}</Text>
           </View>
         </Layout>
         <Layout style={styles.info}>
-          <Text style={styles.infoHeader}>
-            Cal
-          </Text>
+          <Text style={styles.infoHeader}>Cal</Text>
           <View style={{ ...styles.textWrapper, backgroundColor: '#cfd8dc' }}>
-            <Text style={styles.infoText}>
-              {calories}
-            </Text>
+            <Text style={styles.infoText}>{calories}</Text>
           </View>
         </Layout>
       </Layout>

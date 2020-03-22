@@ -4,10 +4,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { mapping, light as lightTheme } from '@eva-design/eva';
+import { enableScreens } from 'react-native-screens';
 import configureStore from './src/state/configureStore';
 import appTheme from './src/theme/custom-theme.json';
 import StatusBar from './src/components/statusBar';
 import AppNavigator from './src/navigator/navigation';
+
+enableScreens();
 
 const { store, persistor } = configureStore();
 

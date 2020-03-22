@@ -1,38 +1,45 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  Layout,
-  StyleService,
-  useStyleSheet,
-} from '@ui-kitten/components';
+import { Layout, StyleService, useStyleSheet } from '@ui-kitten/components';
 
 const Card = (props) => {
-  const { children, containerStyle, topLine, active, onPress } = props;
-  const styles = useStyleSheet(themedStyles);
+  const {
+    children,
+    containerStyle,
+    hasTopLine,
+    topLineColor,
+    active,
+    onPress,
+  } = props;
 
-  const cardStyle = topLine
-    ? { ...styles.card, ...styles.cardWithLine }
-    : styles.card;
+  if (hasTopLine) {
+    if (topLineColor !== 'color-primary-default') {
+      themedStyles.card = {
+        ...themedStyles.card,
+        ...themedStyles.cardWithLine,
+        borderTopColor: topLineColor,
+      };
+    } else {
+      themedStyles.card = {
+        ...themedStyles.card,
+        ...themedStyles.cardWithLine,
+      };
+    }
+  }
+
+  const styles = useStyleSheet(themedStyles);
 
   if (!active) {
     return (
-      <Layout style={cardStyle}>
-        <Layout style={containerStyle}>
-          {children}
-        </Layout>
+      <Layout style={styles.card}>
+        <Layout style={containerStyle}>{children}</Layout>
       </Layout>
     );
   }
   return (
-    <TouchableOpacity
-      style={cardStyle}
-      activeOpacity={0.5}
-      onPress={onPress}
-    >
-      <Layout style={containerStyle}>
-        {children}
-      </Layout>
+    <TouchableOpacity style={styles.card} activeOpacity={0.5} onPress={onPress}>
+      <Layout style={containerStyle}>{children}</Layout>
     </TouchableOpacity>
   );
 };
@@ -52,7 +59,8 @@ const themedStyles = StyleService.create({
 Card.propTypes = {
   children: PropTypes.any.isRequired,
   containerStyle: PropTypes.object,
-  topLine: PropTypes.bool,
+  hasTopLine: PropTypes.bool,
+  topLineColor: PropTypes.string,
   active: PropTypes.bool,
   onPress: PropTypes.func,
 };
@@ -61,7 +69,8 @@ Card.defaultProps = {
   containerStyle: {
     flex: 1,
   },
-  topLine: false,
+  hasTopLine: false,
+  topLineColor: 'color-primary-default',
   active: false,
   onPress: undefined,
 };
