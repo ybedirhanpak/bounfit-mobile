@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Layout,
   Text,
@@ -7,18 +6,15 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 
-import FOOD from '../../defaults/food';
+import VALUES from '../../defaults/values';
 
-const Food = (props) => {
-  const { food, isTotal } = props;
-  const { name, total } = food;
-  const { values } = total;
+const Total = (props) => {
+  const { values } = props;
   const { protein, carb, fat, calories } = values;
   const styles = useStyleSheet(themedStyles);
   return (
     <Layout style={styles.food}>
-      {isTotal && <Text style={styles.total}>Total</Text>}
-      {!isTotal && <Text style={styles.name}>{name}</Text>}
+      <Text style={styles.total}>Total</Text>
       <Layout style={styles.infoGroup}>
         <Text style={{ ...styles.info, backgroundColor: '#eceff1' }}>
           {protein}
@@ -61,14 +57,12 @@ const themedStyles = StyleService.create({
   },
 });
 
-Food.propTypes = {
-  food: FOOD.propType,
-  isTotal: PropTypes.bool,
+Total.propTypes = {
+  values: VALUES.propType,
 };
 
-Food.defaultProps = {
-  food: FOOD.defaultProp,
-  isTotal: false,
+Total.defaultProps = {
+  values: VALUES.defaultProp,
 };
 
-export default Food;
+export default Total;

@@ -1,41 +1,53 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Layout, Icon } from '@ui-kitten/components';
 import Screen from '../Screen';
 import MealCardSmall from '../../components/mealCardSmall';
 import MealTotalInfo from '../../components/mealTotalInfo';
 
-const FABIcon = (style) => <Icon {...style} name="plus-outline" />;
+import dailyPlan from '../../defaults/dailyPlan';
 
-const renderTopNavigation = () => <MealTotalInfo />;
+const renderFabIcon = (style) => <Icon {...style} name="plus-outline" />;
 
-const TodayScreen = ({ navigation }) => {
+const TodayScreen = (props) => {
+  const { navigation, today } = props;
+
   // eslint-disable-next-line no-unused-vars
   const navigateTo = (screen) => {
     navigation.navigate(screen);
   };
 
-  const fabOnPress = () => {
-    console.log('IM FABulous');
+  const onFabPress = () => {
+    console.log('Go to AddMealScreen');
+  };
+
+  const renderTopNavigation = () => (
+    <MealTotalInfo values={today.totalValues} />
+  );
+
+  const renderMeals = () => {
+    const meals = today.meals.map((meal, index) => (
+      <MealCardSmall
+        key={`${meal.name}-${index}`}
+        containerStyle={styles.meal}
+        meal={meal}
+      />
+    ));
+    return meals;
   };
 
   return (
     <Screen
       renderNavigation={renderTopNavigation}
       style={styles.screen}
-      fabIcon={FABIcon}
       fab={{
-        iconRenderer: FABIcon,
-        onPress: fabOnPress,
+        iconRenderer: renderFabIcon,
+        onPress: onFabPress,
       }}
     >
-      <Layout style={styles.mealGroup}>
-        <MealCardSmall containerStyle={styles.meal} />
-        <MealCardSmall containerStyle={styles.meal} />
-        <MealCardSmall containerStyle={styles.meal} />
-        <MealCardSmall containerStyle={styles.meal} />
-      </Layout>
+      <Layout style={styles.mealGroup}>{renderMeals()}</Layout>
     </Screen>
   );
 };
@@ -56,6 +68,15 @@ TodayScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  today: dailyPlan.propType,
 };
 
-export default TodayScreen;
+TodayScreen.defaultProps = {
+  today: dailyPlan.defaultProp,
+};
+
+const mapStateToProps = (state) => ({
+  today: state.user.today,
+});
+
+export default connect(mapStateToProps, null)(TodayScreen);

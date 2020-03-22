@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import mealReducer from './meal';
+import userReducer from './user';
+import onlineReducer from './online';
 
 export default combineReducers({
-  meal: mealReducer,
+  user: userReducer,
+  online: onlineReducer,
 });

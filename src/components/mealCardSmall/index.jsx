@@ -10,42 +10,35 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 import Food from './food';
+import Total from './total';
 
-const mockFood = {
-  name: 'Food Name',
-  protein: 10,
-  carb: 10,
-  fat: 10,
-  calories: 10,
-};
-
-const mockTotal = {
-  name: 'Total',
-  protein: 100,
-  carb: 100,
-  fat: 100,
-  calories: 100,
-};
+import MEAL from '../../defaults/meal';
 
 const MealCardSmall = (props) => {
-  const { containerStyle } = props;
+  const { containerStyle, meal } = props;
   const styles = useStyleSheet(themedStyles);
 
   const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
 
   const DeleteIcon = (style) => <Icon {...style} name="trash-2-outline" />;
 
+  const renderFoods = () => {
+    const foods = meal.foods.map((food, index) => (
+      <Food key={`${food.name}-${index}`} food={food} />
+    ));
+    return foods;
+  };
+
   return (
     <Layout style={containerStyle}>
       <Layout style={styles.card}>
         <Layout style={styles.header}>
-          <Text style={styles.title}>Meal Name</Text>
+          <Text style={styles.title}>{meal.name}</Text>
         </Layout>
         <Divider />
         <Layout style={styles.body}>
-          <Food food={mockFood} />
-          <Food food={mockFood} />
-          <Food total food={mockTotal} />
+          {renderFoods()}
+          <Total values={meal.totalValues} />
         </Layout>
         <Layout style={styles.footer}>
           <Button appearance="ghost" style={styles.button} icon={EditIcon} />
@@ -109,6 +102,11 @@ const themedStyles = StyleService.create({
 
 MealCardSmall.propTypes = {
   containerStyle: PropTypes.object.isRequired,
+  meal: MEAL.propType,
+};
+
+MealCardSmall.defaultProps = {
+  meal: MEAL.defaultProp,
 };
 
 export default MealCardSmall;
