@@ -3,7 +3,7 @@ import { StyleSheet, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { TopNavigation } from '@ui-kitten/components';
 import Screen from '../Screen';
-import SchoolCardContainer from '../../containers/School/schoolCard';
+import SchoolCardContainer from '../../containers/schoolCard';
 
 const SchoolScreen = (props) => {
   const { navigation } = props;

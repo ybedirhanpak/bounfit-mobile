@@ -12,12 +12,14 @@ import SchoolScreen from '../screens/SchoolScreen';
 import TodayScreen from '../screens/TodayScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import MyMealsScreen from '../screens/MyMealsScreen';
 
 // Icons
-const SchoolIcon = (style) => <Icon {...style} name="cube-outline" />;
-const TodayIcon = (style) => <Icon {...style} name="sun-outline" />;
+const SchoolIcon = (style) => <Icon {...style} name="book-open-outline" />;
+const TodayIcon = (style) => <Icon {...style} name="flash-outline" />;
 const ExploreIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 const ProfileIcon = (style) => <Icon {...style} name="person-outline" />;
+const MyMealsIcon = (style) => <Icon {...style} name="star-outline" />;
 
 const BottomTab = createBottomTabNavigator();
 
@@ -35,8 +37,9 @@ const BottomTabBar = ({ navigation, state }) => {
         appearance="noIndicator"
       >
         <BottomNavigationTab title="School" icon={SchoolIcon} />
-        <BottomNavigationTab title="Today" icon={TodayIcon} />
         <BottomNavigationTab title="Explore" icon={ExploreIcon} />
+        <BottomNavigationTab title="Today" icon={TodayIcon} />
+        <BottomNavigationTab title="MyMeals" icon={MyMealsIcon} />
         <BottomNavigationTab title="Profile" icon={ProfileIcon} />
       </BottomNavigation>
     </SafeAreaView>
@@ -46,8 +49,9 @@ const BottomTabBar = ({ navigation, state }) => {
 const TabNavigator = () => (
   <BottomTab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
     <BottomTab.Screen name="School" component={SchoolScreen} />
-    <BottomTab.Screen name="Today" component={TodayScreen} />
     <BottomTab.Screen name="Explore" component={ExploreScreen} />
+    <BottomTab.Screen name="Today" component={TodayScreen} />
+    <BottomTab.Screen name="MyMeals" component={MyMealsScreen} />
     <BottomTab.Screen name="Profile" component={ProfileScreen} />
   </BottomTab.Navigator>
 );

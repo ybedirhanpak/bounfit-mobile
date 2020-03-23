@@ -9,7 +9,7 @@ import {
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const AddMeal = (props) => {
-  const { onPress } = props;
+  const { onPress, containerStyle } = props;
 
   const [active, setActive] = useState(false);
 
@@ -44,6 +44,7 @@ const AddMeal = (props) => {
         onPress();
         setActive(false);
       }}
+      containerStyle={containerStyle}
     >
       <Layout style={styles.container}>
         <Text style={styles.text}>Add Meal</Text>
@@ -71,10 +72,12 @@ const themedStyles = StyleService.create({
 
 AddMeal.propTypes = {
   onPress: PropTypes.func,
+  containerStyle: PropTypes.object,
 };
 
 AddMeal.defaultProps = {
   onPress: undefined,
+  containerStyle: {},
 };
 
 export default AddMeal;

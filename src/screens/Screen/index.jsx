@@ -5,7 +5,14 @@ import { Divider, Layout } from '@ui-kitten/components';
 import FloatingButton from '../../components/floatingButton';
 
 const Screen = (props) => {
-  const { style, children, renderNavigation, refreshControl, fab } = props;
+  const {
+    noScroll,
+    style,
+    children,
+    renderNavigation,
+    refreshControl,
+    fab,
+  } = props;
 
   return (
     <Layout style={styles.container}>
@@ -13,13 +20,19 @@ const Screen = (props) => {
       {renderNavigation && renderNavigation()}
       <Divider />
       {/* Body */}
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-        refreshControl={refreshControl}
-      >
-        <Layout style={style}>{children}</Layout>
-      </ScrollView>
-      {fab && <FloatingButton iconRenderer={fab.iconRenderer} onPress={fab.onPress} />}
+      {noScroll && <Layout style={style}>{children}</Layout>}
+      {!noScroll && (
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={refreshControl}
+        >
+          <Layout style={style}>{children}</Layout>
+        </ScrollView>
+      )}
+
+      {fab && (
+        <FloatingButton iconRenderer={fab.iconRenderer} onPress={fab.onPress} />
+      )}
     </Layout>
   );
 };
@@ -43,6 +56,7 @@ Screen.propTypes = {
     iconRenderer: PropTypes.func,
     onPress: PropTypes.func,
   }),
+  noScroll: PropTypes.bool,
 };
 
 Screen.defaultProps = {
@@ -53,6 +67,7 @@ Screen.defaultProps = {
   refreshControl: undefined,
   children: undefined,
   fab: undefined,
+  noScroll: false,
 };
 
 export default Screen;

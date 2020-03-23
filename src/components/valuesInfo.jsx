@@ -13,28 +13,33 @@ import {
 import VALUES from '../defaults/values';
 
 const BackIcon = (styles) => <Icon {...styles} name="arrow-back-outline" />;
+const AddIcon = (styles) => <Icon {...styles} name="plus-outline" />;
 
 const ValuesInfo = (props) => {
-  const { values, hasBack, backPress } = props;
+  const { values, hasBack, onBackPress, hasAdd, onAddPress } = props;
   const { protein, carb, fat, calories } = values;
-  const styles = useStyleSheet(themedStyles);
 
-  const cardStyle = hasBack
-    ? styles.card
-    : { ...styles.card, paddingLeft: 40 };
+  const styles = useStyleSheet(themedStyles);
+  const cardStyle = styles.card;
+  if (hasBack) {
+    cardStyle.paddingLeft = 0;
+  }
+
+  if (hasAdd) {
+    cardStyle.paddingRight = 0;
+  }
 
   return (
     <Layout style={styles.container}>
       <Layout style={styles.wrapper}>
-        {hasBack
-      && (
-      <Button
-        onPress={backPress}
-        icon={BackIcon}
-        style={styles.backButton}
-        appearance="ghost"
-      />
-      )}
+        {hasBack && (
+          <Button
+            onPress={onBackPress}
+            icon={BackIcon}
+            style={styles.button}
+            appearance="ghost"
+          />
+        )}
         <Layout style={cardStyle}>
           <Layout style={styles.infoGroup}>
             <Layout style={styles.info}>
@@ -55,6 +60,14 @@ const ValuesInfo = (props) => {
             </Layout>
           </Layout>
         </Layout>
+        {hasAdd && (
+          <Button
+            onPress={onAddPress}
+            icon={AddIcon}
+            style={styles.button}
+            appearance="ghost"
+          />
+        )}
       </Layout>
     </Layout>
   );
@@ -68,12 +81,13 @@ const themedStyles = StyleService.create({
     flex: 1,
     flexDirection: 'row',
   },
-  backButton: {
+  button: {
     width: 40,
   },
   card: {
     flex: 1,
     paddingTop: 15,
+    paddingLeft: 40,
     paddingRight: 40,
   },
   infoGroup: {
@@ -96,12 +110,16 @@ const themedStyles = StyleService.create({
 ValuesInfo.propTypes = {
   values: VALUES.propType.isRequired,
   hasBack: PropTypes.bool,
-  backPress: PropTypes.func,
+  onBackPress: PropTypes.func,
+  hasAdd: PropTypes.bool,
+  onAddPress: PropTypes.func,
 };
 
 ValuesInfo.defaultProps = {
   hasBack: false,
-  backPress: undefined,
+  onBackPress: undefined,
+  hasAdd: false,
+  onAddPress: undefined,
 };
 
 const mapStateToProps = (state) => ({

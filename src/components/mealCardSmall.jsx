@@ -28,7 +28,6 @@ const MealCardSmall = (props) => {
         hasTopLine
       >
         <Layout style={styles.body}>
-          {/* <MealHeader /> */}
           <Meal meal={meal} />
         </Layout>
         <Divider />

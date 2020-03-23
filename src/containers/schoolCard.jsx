@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import NetInfo from '@react-native-community/netinfo';
 import { Layout, Text } from '@ui-kitten/components';
-import { GetRequest } from '../../helpers/api-helper';
-import { SCHOOL_MEALS } from '../../config/index';
+import { GetRequest } from '../helpers/api-helper';
+import { SCHOOL_MEALS } from '../config/index';
 // Components
-import SchoolCard from '../../components/schoolCard';
-import SchoolCardPlaceholder from '../../placeholders/School/schoolCard';
+import SchoolCard from '../components/schoolCard';
+import SchoolCardPlaceholder from '../placeholders/School/schoolCard';
 
 const SchoolCardContainer = (props) => {
   const { refreshing } = props;

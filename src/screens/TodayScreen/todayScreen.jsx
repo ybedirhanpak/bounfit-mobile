@@ -7,6 +7,7 @@ import Screen from '../Screen';
 import MealCard from '../../components/mealCard';
 import ValuesInfo from '../../components/valuesInfo';
 import AddMeal from '../../components/addMeal';
+import MealList from '../../components/mealList';
 import MEAL from '../../defaults/meal';
 
 const TodayScreen = (props) => {
@@ -17,30 +18,20 @@ const TodayScreen = (props) => {
     navigation.navigate(screen);
   };
 
-  const TopNavigation = () => <ValuesInfo />;
-
-  const renderMeals = () => {
-    const mealCards = meals.map((meal, index) => (
-      <MealCard
-        key={`${meal.name}-${index}`}
-        containerStyle={styles.meal}
-        meal={meal}
-      />
-    ));
-    return mealCards;
-  };
+  const TopNavigation = () => (
+    <ValuesInfo
+      hasAdd
+      onAddPress={() => navigateTo('MyMeals')}
+    />
+  );
 
   return (
     <Screen
+      noScroll
       renderNavigation={TopNavigation}
       style={styles.screen}
     >
-      <Layout style={styles.mealGroup}>
-        {renderMeals()}
-        <AddMeal
-          onPress={() => navigateTo('AddMeal')}
-        />
-      </Layout>
+      <MealList meals={meals} />
     </Screen>
   );
 };
@@ -48,12 +39,11 @@ const TodayScreen = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    marginTop: 16,
   },
-  mealGroup: {
-    marginTop: 20,
-  },
-  meal: {
-    marginBottom: 15,
+  addMeal: {
+    marginHorizontal: 12,
+    marginBottom: 16,
   },
 });
 

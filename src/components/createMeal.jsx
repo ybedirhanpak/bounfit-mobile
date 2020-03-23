@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Layout,
@@ -12,9 +11,8 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 
-import { createUserMeal } from '../../state/actions/user';
-
 const AddIcon = (style) => <Icon {...style} name="checkmark-outline" />;
+const ExploreMealsIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 
 const CreateMeal = (props) => {
   const { createMeal, closeModal } = props;
@@ -33,26 +31,37 @@ const CreateMeal = (props) => {
         calories: 0,
       },
     };
-    if (meal.name) { createMeal(meal); }
+    if (meal.name) {
+      createMeal(meal);
+    }
     closeModal();
   };
 
   return (
     <Layout style={styles.modalContainer}>
       <Layout style={styles.head}>
-        <Text style={styles.header}>Create A Meal</Text>
+        <Text style={styles.header}>Create a meal</Text>
         <Divider />
       </Layout>
       <Layout style={styles.body}>
         <Layout style={styles.inputWrapper}>
-          <Input onChangeText={(text) => setMealName(text)} />
+          <Input
+            onChangeText={(text) => setMealName(text)}
+            placeholder="Meal name"
+          />
         </Layout>
         <Layout>
+          <Button appearance="ghost" icon={AddIcon} onPress={onCheckPressed} />
+        </Layout>
+      </Layout>
+      <Layout style={styles.footer}>
+        <Layout style={styles.buttonWrapper}>
           <Button
             appearance="ghost"
-            icon={AddIcon}
-            onPress={onCheckPressed}
-          />
+            icon={ExploreMealsIcon}
+          >
+            Explore Meals
+          </Button>
         </Layout>
       </Layout>
     </Layout>
@@ -73,7 +82,7 @@ const themedStyles = StyleService.create({
   },
   header: {
     fontSize: 18,
-    paddingBottom: 16,
+    paddingBottom: 12,
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -82,10 +91,22 @@ const themedStyles = StyleService.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: 16,
+    paddingTop: 8,
   },
   inputWrapper: {
     flex: 1,
     paddingLeft: 16,
+  },
+  footer: {
+    paddingBottom: 6,
+  },
+  buttonWrapper: {
+    alignSelf: 'flex-end',
+  },
+  text: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 6,
   },
 });
 
@@ -98,8 +119,4 @@ CreateMeal.defaultProps = {
   closeModal: undefined,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  createMeal: (meal) => dispatch(createUserMeal(meal)),
-});
-
-export default connect(null, mapDispatchToProps)(CreateMeal);
+export default CreateMeal;
