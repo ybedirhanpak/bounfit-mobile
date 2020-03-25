@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Layout } from '@ui-kitten/components';
 import Screen from '../Screen';
-import MealCard from '../../components/mealCard';
-import ValuesInfo from '../../components/valuesInfo';
-import AddMeal from '../../components/addMeal';
+
 import MealList from '../../components/mealList';
+
+import TotalValuesContainer from '../../containers/todayValuesContainer';
+
 import MEAL from '../../defaults/meal';
 
 const TodayScreen = (props) => {
@@ -19,7 +19,7 @@ const TodayScreen = (props) => {
   };
 
   const TopNavigation = () => (
-    <ValuesInfo
+    <TotalValuesContainer
       hasAdd
       onAddPress={() => navigateTo('MyMeals')}
     />

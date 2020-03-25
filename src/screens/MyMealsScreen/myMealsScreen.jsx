@@ -7,7 +7,7 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 import Screen from '../Screen';
-import ValuesInfo from '../../components/valuesInfo';
+import TotalValuesContainer from '../../containers/todayValuesContainer';
 import MealListSmallContainer from '../../containers/mealListSmallContainer';
 import CreateMealContainer from '../../containers/createMealContainer';
 
@@ -32,7 +32,7 @@ const MyMealsScreen = (props) => {
   };
 
   const TopNavigation = () => (
-    <ValuesInfo
+    <TotalValuesContainer
       hasAdd
       onAddPress={openModal}
     />

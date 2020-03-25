@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Layout,
-  Text,
-  StyleService,
-  useStyleSheet,
-} from '@ui-kitten/components';
+import { StyleService, useStyleSheet } from '@ui-kitten/components';
 import Screen from '../Screen';
 import ValuesInfo from '../../components/valuesInfo';
+import EditMeal from '../../components/editMeal';
 
 import MEAL from '../../defaults/meal';
 
@@ -24,16 +20,16 @@ const EditMealScreen = (props) => {
   };
 
   const TopNavigation = () => (
-    <ValuesInfo hasBack onBackPress={() => navigateTo('MyMeals')} />
+    <ValuesInfo
+      values={meal.totalValues}
+      hasBack
+      onBackPress={() => navigateTo('MyMeals')}
+    />
   );
 
   return (
     <Screen noScroll renderNavigation={TopNavigation} style={styles.screen}>
-      <Layout style={styles.container}>
-        <Layout style={styles.container}>
-          {meal && <Text>{meal.name}</Text>}
-        </Layout>
-      </Layout>
+      {meal && <EditMeal meal={meal} />}
     </Screen>
   );
 };
