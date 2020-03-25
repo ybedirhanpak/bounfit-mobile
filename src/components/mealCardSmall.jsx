@@ -14,7 +14,7 @@ import Meal from './meal';
 import MEAL from '../defaults/meal';
 
 const MealCardSmall = (props) => {
-  const { containerStyle, meal } = props;
+  const { containerStyle, meal, onAddPress, onEditPress } = props;
   const styles = useStyleSheet(themedStyles);
 
   const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
@@ -33,8 +33,18 @@ const MealCardSmall = (props) => {
         <Divider />
         <Layout>
           <Layout style={styles.footer}>
-            <Button appearance="ghost" style={styles.button} icon={AddIcon} />
-            <Button appearance="ghost" style={styles.button} icon={EditIcon} />
+            <Button
+              appearance="ghost"
+              style={styles.button}
+              icon={AddIcon}
+              onPress={onAddPress}
+            />
+            <Button
+              appearance="ghost"
+              style={styles.button}
+              icon={EditIcon}
+              onPress={onEditPress}
+            />
           </Layout>
         </Layout>
       </Card>
@@ -68,6 +78,8 @@ const themedStyles = StyleService.create({
 MealCardSmall.propTypes = {
   containerStyle: PropTypes.object.isRequired,
   meal: MEAL.propType,
+  onAddPress: PropTypes.func.isRequired,
+  onEditPress: PropTypes.func.isRequired,
 };
 
 MealCardSmall.defaultProps = {

@@ -15,7 +15,7 @@ const AddIcon = (style) => <Icon {...style} name="checkmark-outline" />;
 const ExploreMealsIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 
 const CreateMeal = (props) => {
-  const { createMeal, closeModal } = props;
+  const { createMeal, closeModal, navigateExplore, navigateEditMeal } = props;
   const styles = useStyleSheet(themedStyles);
 
   const [mealName, setMealName] = useState('');
@@ -33,6 +33,7 @@ const CreateMeal = (props) => {
     };
     if (meal.name) {
       createMeal(meal);
+      navigateEditMeal(meal);
     }
     closeModal();
   };
@@ -51,7 +52,11 @@ const CreateMeal = (props) => {
           />
         </Layout>
         <Layout>
-          <Button appearance="ghost" icon={AddIcon} onPress={onCheckPressed} />
+          <Button
+            appearance="ghost"
+            icon={AddIcon}
+            onPress={onCheckPressed}
+          />
         </Layout>
       </Layout>
       <Layout style={styles.footer}>
@@ -59,6 +64,10 @@ const CreateMeal = (props) => {
           <Button
             appearance="ghost"
             icon={ExploreMealsIcon}
+            onPress={() => {
+              closeModal();
+              navigateExplore();
+            }}
           >
             Explore Meals
           </Button>
@@ -101,7 +110,7 @@ const themedStyles = StyleService.create({
     paddingBottom: 6,
   },
   buttonWrapper: {
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
   text: {
     fontSize: 14,
@@ -113,6 +122,8 @@ const themedStyles = StyleService.create({
 CreateMeal.propTypes = {
   createMeal: PropTypes.func.isRequired,
   closeModal: PropTypes.func,
+  navigateExplore: PropTypes.func.isRequired,
+  navigateEditMeal: PropTypes.func.isRequired,
 };
 
 CreateMeal.defaultProps = {

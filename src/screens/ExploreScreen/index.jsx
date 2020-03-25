@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { TopNavigation } from '@ui-kitten/components';
 import Screen from '../Screen';
 
+
 const renderNavigation = () => (
   <TopNavigation title="EXPLORE" alignment="center" />
 );

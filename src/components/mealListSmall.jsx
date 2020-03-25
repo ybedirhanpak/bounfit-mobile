@@ -6,10 +6,10 @@ import MEAL from '../defaults/meal';
 import MealCardSmall from './mealCardSmall';
 
 const MealList = (props) => {
-  const { meals } = props;
+  const { meals, onAddPress, onEditPress } = props;
 
-  const data = meals.map((meal) => ({
-    key: meal.name,
+  const data = meals.map((meal, index) => ({
+    key: `${meal.name}-${index}`,
     meal,
   }));
 
@@ -17,7 +17,14 @@ const MealList = (props) => {
     <View style={styles.container}>
       <FlatList
         data={data}
-        renderItem={({ item }) => <MealCardSmall meal={item.meal} containerStyle={styles.meal} />}
+        renderItem={({ item }) => (
+          <MealCardSmall
+            meal={item.meal}
+            containerStyle={styles.meal}
+            onAddPress={() => onAddPress(item.meal)}
+            onEditPress={() => onEditPress(item.meal)}
+          />
+        )}
         // Performance settings
         removeClippedSubviews // Unmount components when outside of window
         initialNumToRender={4} // Reduce initial render amount
@@ -46,6 +53,8 @@ const styles = StyleSheet.create({
 
 MealList.propTypes = {
   meals: PropTypes.arrayOf(MEAL.propType),
+  onAddPress: PropTypes.func.isRequired,
+  onEditPress: PropTypes.func.isRequired,
 };
 
 MealList.defaultProps = {
