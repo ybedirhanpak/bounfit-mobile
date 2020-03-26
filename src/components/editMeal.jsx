@@ -13,15 +13,17 @@ import {
 
 import MEAL from '../defaults/meal';
 
+import FoodSmallCardList from './food/list/smallCardList';
+
 const AddIcon = (style) => <Icon {...style} name="checkmark-outline" />;
 const ExploreMealsIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 
 const EditMeal = (props) => {
   const { meal } = props;
+  const { name, foods } = meal;
   const styles = useStyleSheet(themedStyles);
 
-  const [mealName, setMealName] = useState(meal.name);
-
+  const [mealName, setMealName] = useState(name);
   return (
     <Layout style={styles.container}>
       <Layout style={styles.inputWrapper}>
@@ -32,6 +34,9 @@ const EditMeal = (props) => {
           textStyle={styles.inputText}
         />
       </Layout>
+      <Layout style={styles.foodList}>
+        <FoodSmallCardList foods={foods} />
+      </Layout>
     </Layout>
   );
 };
@@ -40,15 +45,21 @@ const themedStyles = StyleService.create({
   container: {
     flex: 1,
     paddingHorizontal: 12,
-    paddingVertical: 16,
+    paddingTop: 16,
   },
   inputWrapper: {
-    flex: 1,
+
   },
   inputText: {
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  food: {
+    marginBottom: 12,
+  },
+  foodList: {
+    flex: 1,
   },
 });
 

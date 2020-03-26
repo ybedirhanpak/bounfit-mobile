@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, StyleSheet, View } from 'react-native';
 
-import MEAL from '../defaults/meal';
-import MealCardSmall from './mealCardSmall';
+import FOOD from '../../../defaults/food';
+import FoodCardSmall from '../card/small';
 
-const MealList = (props) => {
-  const { meals, onAddPress, onEditPress } = props;
+const FoodSmallCardList = (props) => {
+  const { foods } = props;
 
-  const data = meals.map((meal, index) => ({
-    key: `${meal.name}-${index}`,
-    meal,
+  const data = foods.map((food, index) => ({
+    key: `${food.name}-${index}`,
+    food,
   }));
 
   return (
@@ -18,11 +18,9 @@ const MealList = (props) => {
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <MealCardSmall
-            meal={item.meal}
-            containerStyle={styles.meal}
-            onAddPress={() => onAddPress(item.meal)}
-            onEditPress={() => onEditPress(item.meal)}
+          <FoodCardSmall
+            food={item.food}
+            containerStyle={styles.food}
           />
         )}
         // Performance settings
@@ -45,20 +43,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
-  meal: {
-    marginBottom: 15,
+  food: {
+    marginBottom: 16,
     marginHorizontal: 12,
   },
 });
 
-MealList.propTypes = {
-  meals: PropTypes.arrayOf(MEAL.propType),
-  onAddPress: PropTypes.func.isRequired,
-  onEditPress: PropTypes.func.isRequired,
+FoodSmallCardList.propTypes = {
+  foods: PropTypes.arrayOf(FOOD.propType),
 };
 
-MealList.defaultProps = {
-  meals: [],
+FoodSmallCardList.defaultProps = {
+  foods: [],
 };
 
-export default MealList;
+export default FoodSmallCardList;

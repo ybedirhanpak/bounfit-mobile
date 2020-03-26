@@ -8,10 +8,10 @@ import {
   StyleService,
   useStyleSheet,
 } from '@ui-kitten/components';
-import Card from './card';
-import Meal from './meal';
+import Card from '../../card';
+import Meal from '../index';
 
-import MEAL from '../defaults/meal';
+import MEAL from '../../../defaults/meal';
 
 const MealCardSmall = (props) => {
   const { containerStyle, meal, onAddPress, onEditPress } = props;

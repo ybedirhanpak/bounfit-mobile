@@ -9,13 +9,13 @@ import {
   StyleService,
   useStyleSheet,
 } from '@ui-kitten/components';
-import Card from './card';
+import Card from '../../card';
 
-import Food from './food';
-import Total from './food/total';
+import Food from '../../food';
+import Total from '../../food/total';
 
-import MEAL from '../defaults/meal';
-import FoodHeader from './food/header';
+import MEAL from '../../../defaults/meal';
+import FoodHeader from '../../food/header';
 
 const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
 const DeleteIcon = (style) => <Icon {...style} name="trash-2-outline" />;

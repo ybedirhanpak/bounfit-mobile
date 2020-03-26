@@ -1,17 +1,14 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Screen from '../Screen';
 
-import MealList from '../../components/mealList';
+import MealCardListContainer from '../../containers/meal/cardListContainer';
 
 import TotalValuesContainer from '../../containers/todayValuesContainer';
 
-import MEAL from '../../defaults/meal';
-
 const TodayScreen = (props) => {
-  const { navigation, meals } = props;
+  const { navigation } = props;
 
   // eslint-disable-next-line no-unused-vars
   const navigateTo = (screen) => {
@@ -31,7 +28,7 @@ const TodayScreen = (props) => {
       renderNavigation={TopNavigation}
       style={styles.screen}
     >
-      <MealList meals={meals} />
+      <MealCardListContainer />
     </Screen>
   );
 };
@@ -51,11 +48,6 @@ TodayScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  meals: PropTypes.arrayOf(MEAL.propType).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  meals: state.user.today.meals,
-});
-
-export default connect(mapStateToProps, null)(TodayScreen);
+export default TodayScreen;

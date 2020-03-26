@@ -10,15 +10,14 @@ import {
 import FOOD from '../../defaults/food';
 
 const Food = (props) => {
-  const { food, isTotal } = props;
+  const { food } = props;
   const { name, total } = food;
   const { values } = total;
   const { protein, carb, fat, calories } = values;
   const styles = useStyleSheet(themedStyles);
   return (
     <Layout style={styles.food}>
-      {isTotal && <Text style={styles.total}>Total</Text>}
-      {!isTotal && <Text style={styles.name}>{name}</Text>}
+      <Text style={styles.name}>{name}</Text>
       <Layout style={styles.infoGroup}>
         <Text style={{ ...styles.info, backgroundColor: '#eceff1' }}>
           {protein}
@@ -63,12 +62,10 @@ const themedStyles = StyleService.create({
 
 Food.propTypes = {
   food: FOOD.propType,
-  isTotal: PropTypes.bool,
 };
 
 Food.defaultProps = {
   food: FOOD.defaultProp,
-  isTotal: false,
 };
 
 export default Food;

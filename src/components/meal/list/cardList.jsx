@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList, StyleSheet, View } from 'react-native';
 
-import MEAL from '../defaults/meal';
-import MealCard from './mealCard';
+import MEAL from '../../../defaults/meal';
+import MealCard from '../card';
 
-const MealListSmall = (props) => {
+const MealCardList = (props) => {
   const { meals } = props;
 
-  const data = meals.map((meal) => ({
-    key: meal.name,
+  const data = meals.map((meal, index) => ({
+    key: `${meal.name}-${index}`,
     meal,
   }));
 
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
   },
 });
 
-MealListSmall.propTypes = {
+MealCardList.propTypes = {
   meals: PropTypes.arrayOf(MEAL.propType),
 };
 
-MealListSmall.defaultProps = {
+MealCardList.defaultProps = {
   meals: [],
 };
 
-export default MealListSmall;
+export default MealCardList;

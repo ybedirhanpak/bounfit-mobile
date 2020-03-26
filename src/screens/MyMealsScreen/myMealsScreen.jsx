@@ -8,7 +8,7 @@ import {
 } from '@ui-kitten/components';
 import Screen from '../Screen';
 import TotalValuesContainer from '../../containers/todayValuesContainer';
-import MealListSmallContainer from '../../containers/mealListSmallContainer';
+import MealSmallCardListContainer from '../../containers/meal/smallCardListContainer';
 import CreateMealContainer from '../../containers/createMealContainer';
 
 const MyMealsScreen = (props) => {
@@ -46,7 +46,7 @@ const MyMealsScreen = (props) => {
     >
       <Layout style={styles.container}>
         <Layout style={styles.container}>
-          <MealListSmallContainer
+          <MealSmallCardListContainer
             onAddPress={(meal) => console.log('Meal add: ', meal.name)}
             onEditPress={(meal) => navigateTo('EditMeal', { meal })}
           />

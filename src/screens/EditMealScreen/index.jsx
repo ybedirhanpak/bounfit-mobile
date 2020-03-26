@@ -29,7 +29,7 @@ const EditMealScreen = (props) => {
 
   return (
     <Screen noScroll renderNavigation={TopNavigation} style={styles.screen}>
-      {meal && <EditMeal meal={meal} />}
+      <EditMeal meal={meal} />
     </Screen>
   );
 };
