@@ -18,10 +18,7 @@ const FoodSmallCardList = (props) => {
       <FlatList
         data={data}
         renderItem={({ item }) => (
-          <FoodCardSmall
-            food={item.food}
-            containerStyle={styles.food}
-          />
+          <FoodCardSmall food={item.food} containerStyle={styles.food} />
         )}
         // Performance settings
         removeClippedSubviews // Unmount components when outside of window

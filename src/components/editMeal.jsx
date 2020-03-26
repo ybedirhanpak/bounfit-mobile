@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import {
   Layout,
-  Icon,
-  Text,
-  Button,
-  Divider,
   Input,
   StyleService,
   useStyleSheet,
@@ -14,9 +9,6 @@ import {
 import MEAL from '../defaults/meal';
 
 import FoodSmallCardList from './food/list/smallCardList';
-
-const AddIcon = (style) => <Icon {...style} name="checkmark-outline" />;
-const ExploreMealsIcon = (style) => <Icon {...style} name="globe-2-outline" />;
 
 const EditMeal = (props) => {
   const { meal } = props;
@@ -44,11 +36,10 @@ const EditMeal = (props) => {
 const themedStyles = StyleService.create({
   container: {
     flex: 1,
-    paddingHorizontal: 12,
     paddingTop: 16,
   },
   inputWrapper: {
-
+    paddingHorizontal: 12,
   },
   inputText: {
     fontSize: 16,

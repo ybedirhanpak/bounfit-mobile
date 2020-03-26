@@ -1,14 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Layout,
-  Button,
-  Icon,
-  Divider,
-  StyleService,
-  useStyleSheet,
-  Text,
-} from '@ui-kitten/components';
+import { Layout, StyleService, useStyleSheet } from '@ui-kitten/components';
 import Card from '../../card';
 import Food from '../index';
 
@@ -18,17 +10,12 @@ const FoodCardSmall = (props) => {
   const { containerStyle, food } = props;
   const styles = useStyleSheet(themedStyles);
 
-  const EditIcon = (style) => <Icon {...style} name="edit-outline" />;
-
-  const AddIcon = (style) => <Icon {...style} name="plus-outline" />;
-
   return (
     <Layout style={containerStyle}>
-      <Card
-        containerStyle={styles.card}
-        hasTopLine
-      >
-        <Food food={food} />
+      <Card containerStyle={styles.card} hasTopLine>
+        <Layout style={styles.body}>
+          <Food food={food} />
+        </Layout>
       </Card>
     </Layout>
   );
@@ -41,19 +28,9 @@ const themedStyles = StyleService.create({
   },
   body: {
     flex: 1,
-    paddingLeft: 15,
-    paddingVertical: 15,
+    paddingHorizontal: 12,
+    paddingVertical: 16,
     alignItems: 'center',
-  },
-  footer: {
-    flex: 1,
-    width: '100%',
-    flexDirection: 'column',
-    alignSelf: 'flex-end',
-  },
-  button: {
-    flex: 1,
-    borderRadius: 0,
   },
 });
 
